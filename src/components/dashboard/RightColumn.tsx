@@ -1,17 +1,26 @@
 "use client";
 import { useState } from "react";
 import { Card, Badge, Button } from "@/components/ui";
-import { mockDailySummary, mockMapplsExtras } from "@/data/mockData";
-import { ArrowUpRight, ArrowDownRight, Download, ChevronDown, ChevronUp, Clock, ShieldAlert, Route, MapPin } from "lucide-react";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import { mockDailySummary, mockMapplsExtras, mockCameras } from "@/data/mockData";
+import { ArrowUpRight, ArrowDownRight, Download, Clock, Route, MapPin } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const LeafletMap = dynamic(() => import("./LeafletMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full bg-[#0a192f] flex flex-col items-center justify-center">
+      <div className="w-8 h-8 border-2 border-blue-500/30 border-t-blue-500 rounded-full animate-spin"></div>
+    </div>
+  ),
+});
+
+const center = {
+  lat: 12.9716, // Bengaluru
+  lng: 77.5946
+};
 
 export function RightColumn() {
   const [wardViolationsFilter, setWardViolationsFilter] = useState(30);
-  
-  const { isLoaded, loadError } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "MISSING_API_KEY",
-  });
 
   return (
     <div className="h-full overflow-y-auto pb-2 pr-1 hide-scrollbar bg-transparent">
@@ -31,43 +40,27 @@ export function RightColumn() {
       </div>
 
       {/* Zone-wise Violation Heatmap */}
-      <Card className="glass-panel flex flex-col relative overflow-hidden group p-0 shrink-0">
-        <div className="p-6 pb-2 z-10 relative">
-          <h3 className="font-bold text-[var(--color-text-primary)]">Zone wise Violation Heatmap</h3>
+      <Card className="glass-panel relative flex flex-col shrink-0 p-0 overflow-hidden">
+        <div className="p-4 pb-2 z-10 relative">
+          <h3 className="font-bold text-[var(--color-text-primary)]">Live Map Preview</h3>
           <p className="text-[10px] text-[var(--color-text-secondary)] mt-1 font-medium">
-            Thematic layer via Mappls GeoAnalytics API districts colored by violation_count
+            Thematic layer colored by violation_count
           </p>
         </div>
         
-        {/* Live Demo Map Background */}
-        <div className="h-64 w-full mt-4 bg-[#EAE6DF] relative overflow-hidden flex items-center justify-center shrink-0 transform-gpu z-0">
-          {isLoaded && !loadError && (
-            <div className="absolute inset-0">
-              <GoogleMap
-                mapContainerStyle={{ width: "100%", height: "100%", borderRadius: "0px" }}
-                center={{ lat: 12.9716, lng: 77.5946 }}
-                zoom={10}
-                options={{
-                  disableDefaultUI: true,
-                  styles: [
-                    { featureType: "all", elementType: "labels.text.fill", stylers: [{ color: "#546e7a" }] },
-                    { featureType: "water", elementType: "geometry", stylers: [{ color: "#d8e1e8" }] },
-                    { featureType: "landscape", elementType: "geometry", stylers: [{ color: "#f5f2ee" }] },
-                    { featureType: "poi", elementType: "geometry", stylers: [{ color: "#eae3d9" }] },
-                    { featureType: "road", elementType: "geometry", stylers: [{ color: "#ffffff" }] },
-                    { featureType: "road.arterial", elementType: "geometry.fill", stylers: [{ color: "#ffffff" }] },
-                  ],
-                }}
-              />
-            </div>
-          )}
+        <div className="w-full h-64 rounded-none overflow-hidden relative border-t border-b border-[var(--border-soft)] bg-[#EAE6DF] z-0 mt-2">
+          <LeafletMap 
+            cameras={[]} 
+            center={center} 
+            zoom={10} 
+          />
           {/* Decorative shapes to simulate thematic map regions overlaid on the real map */}
-          <div className="absolute top-2 left-2 w-24 h-24 bg-[var(--color-accent-red)]/20 rounded-full blur-2xl z-10 pointer-events-none"></div>
-          <div className="absolute bottom-2 right-2 w-32 h-20 bg-[var(--color-accent-amber)]/20 rounded-[40%] blur-2xl z-10 pointer-events-none"></div>
-          <div className="absolute top-10 right-10 w-16 h-16 bg-[var(--color-accent-green)]/20 rounded-full blur-xl z-10 pointer-events-none"></div>
+          <div className="absolute top-2 left-2 w-24 h-24 bg-[var(--color-accent-red)]/40 rounded-full blur-2xl z-[500] pointer-events-none mix-blend-screen"></div>
+          <div className="absolute bottom-2 right-2 w-32 h-20 bg-[var(--color-accent-amber)]/40 rounded-[40%] blur-2xl z-[500] pointer-events-none mix-blend-screen"></div>
+          <div className="absolute top-10 right-10 w-16 h-16 bg-[var(--color-accent-green)]/40 rounded-full blur-xl z-[500] pointer-events-none mix-blend-screen"></div>
         </div>
         
-        <div className="p-4 pt-3 flex justify-between items-center text-[10px] font-bold text-[var(--color-text-secondary)] border-t border-[var(--border-soft)] bg-black/5 uppercase tracking-wider">
+        <div className="p-4 pt-3 flex justify-between items-center text-[10px] font-bold text-[var(--color-text-secondary)] bg-black/5 uppercase tracking-wider">
           <span>Low</span>
           <div className="flex-1 h-1.5 mx-3 rounded-full bg-linear-to-r from-[var(--color-accent-green)] via-[var(--color-accent-amber)] to-[var(--color-accent-red)]"></div>
           <span>High Density</span>

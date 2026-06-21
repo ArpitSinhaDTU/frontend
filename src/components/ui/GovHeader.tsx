@@ -66,7 +66,7 @@ export function GovHeader() {
           <span className="mx-6 inline-flex items-center gap-2">🚦 National Highway Traffic Emergency: <span className="font-black text-amber-400 text-base">1073</span></span> <span className="text-white/30">|</span>
           <span className="mx-6 inline-flex items-center gap-2">🚑 Ambulance: <span className="font-black text-amber-400 text-base">108</span></span> <span className="text-white/30">|</span>
           <span className="mx-6 inline-flex items-center gap-2">🚒 Fire: <span className="font-black text-amber-400 text-base">101</span></span> <span className="text-white/30">|</span>
-          <span className="mx-6 inline-flex items-center gap-2">👩 Women's Helpline: <span className="font-black text-amber-400 text-base">1091</span></span> <span className="text-white/30">|</span>
+          <span className="mx-6 inline-flex items-center gap-2">👩 Women&apos;s Helpline: <span className="font-black text-amber-400 text-base">1091</span></span> <span className="text-white/30">|</span>
           <span className="mx-6 inline-flex items-center gap-2">👶 Child Helpline: <span className="font-black text-amber-400 text-base">1098</span></span> <span className="text-white/30">|</span>
           <span className="mx-6 inline-flex items-center gap-2">💻 Cyber Fraud Helpline: <span className="font-black text-amber-400 text-base">1930</span></span> <span className="text-white/30">|</span>
           <span className="mx-6 inline-flex items-center gap-2">📞 Bengaluru Traffic Police Citizen Support: <span className="font-black text-amber-400 text-base">080-22943381</span></span>
