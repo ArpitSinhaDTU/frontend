@@ -352,7 +352,7 @@ export default function CameraPage({ params }: { params: Promise<{ id: string }>
               </>
             )}
           </button>
-          <div className="text-sm font-medium text-gray-500 bg-white px-4 py-2 rounded-none border border-(--color-border-soft) shadow-sm">
+          <div suppressHydrationWarning className="text-sm font-medium text-gray-500 bg-white px-4 py-2 rounded-none border border-[var(--border-soft)] shadow-sm shrink-0">
             {new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
           </div>
         </div>
