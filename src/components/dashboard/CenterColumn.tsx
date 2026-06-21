@@ -5,7 +5,7 @@ import { mockCameras, mockViolations } from "@/data/mockData";
 import type { Camera } from "@/data/mockData";
 import { Card, Badge, Button } from "@/components/ui";
 import { useAppStore } from "@/store/useAppStore";
-import { X, ChevronRight, MapPin, Camera as CameraIcon } from "lucide-react";
+import { X, ChevronRight, MapPin, Camera as CameraIcon, Info } from "lucide-react";
 import Link from "next/link";
 import { AreaChart, Area, ResponsiveContainer } from "recharts";
 
@@ -37,6 +37,14 @@ export function CenterColumn() {
 
   return (
     <div className="gap-4 flex flex-col h-full">
+      {viewMode === "map" && (
+        <div className="bg-[var(--color-accent-blue-bg)] border border-[var(--color-accent-blue)]/30 text-[var(--color-text-primary)] px-4 py-3 rounded-lg text-xs flex items-start shrink-0 shadow-sm backdrop-blur-sm">
+          <Info size={16} className="mr-3 mt-0.5 text-[var(--color-accent-blue)] shrink-0" />
+          <p className="leading-relaxed">
+            <strong>Interactive Map:</strong> Scroll the map around Bengaluru to see camera icons. Double tap to open the camera details, and click &quot;Open Full Camera View&quot; for complete details.
+          </p>
+        </div>
+      )}
       <Card className="glass-panel flex-1 p-2 relative flex items-center justify-center overflow-hidden">
         {viewMode === "map" ? (
           <LeafletMap 
