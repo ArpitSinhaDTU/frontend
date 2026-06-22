@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { Card, Badge, Button } from "@/components/ui";
 import { mockDailySummary, mockMapplsExtras, mockCameras } from "@/data/mockData";
-import { ArrowUpRight, ArrowDownRight, Download, Clock, Route, MapPin } from "lucide-react";
+import { ArrowUpRight, ArrowDownRight, Clock, Route, MapPin } from "lucide-react";
+import { GlobalPdfDownloadButton } from "@/components/pdf/GlobalPdfDownloadButton";
 import dynamic from "next/dynamic";
 
 const LeafletMap = dynamic(() => import("./LeafletMap"), {
@@ -213,10 +214,7 @@ export function RightColumn() {
             </div>
           </Card>
 
-      <Button variant="outline" className="w-full text-[var(--color-text-primary)] border-[var(--border-soft)] hover:bg-black/5 hover:text-[var(--color-text-primary)] bg-[var(--card-bg)] shrink-0 shadow-sm py-5 rounded-none font-bold backdrop-blur-xl">
-        <Download size={16} className="mr-2" />
-        Export Insight Report
-      </Button>
+      <GlobalPdfDownloadButton />
       </div>
     </div>
   );

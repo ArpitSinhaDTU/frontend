@@ -3,6 +3,7 @@ import { Card, Badge, Button } from "@/components/ui";
 import { mockCameras, mockDailySummary } from "@/data/mockData";
 import { Camera, AlertTriangle, ArrowUpRight, Maximize2, Activity } from "lucide-react";
 import { PieChart, Pie, Cell, ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from "recharts";
+import Link from "next/link";
 
 export function LeftColumn() {
   const data = [
@@ -30,11 +31,12 @@ export function LeftColumn() {
           </Badge>
         </div>
         
-        <div className="flex space-x-2 mt-2">
+        <div className="flex space-x-2 mt-2 flex-wrap gap-y-2">
           {mockCameras.map((cam) => (
-            <div 
+            <Link 
               key={cam.id} 
-              className={`w-8 h-8 rounded-none flex items-center justify-center border shadow-sm ${
+              href={`/camera/${cam.id}`}
+              className={`w-8 h-8 rounded-none flex items-center justify-center border shadow-sm transition-transform hover:scale-110 ${
                 cam.status === "normal" ? "border-[var(--color-accent-green)]/30 bg-[var(--color-accent-green-bg)] text-[var(--color-accent-green)]" :
                 cam.status === "alert" ? "border-[var(--color-accent-red)]/30 bg-[var(--color-accent-red-bg)] text-[var(--color-accent-red)] animate-pulse" :
                 "border-[var(--border-soft)] bg-black/5 text-[var(--color-text-secondary)]"
@@ -42,7 +44,7 @@ export function LeftColumn() {
               title={cam.name}
             >
               <Camera size={14} />
-            </div>
+            </Link>
           ))}
         </div>
       </Card>
@@ -170,10 +172,10 @@ export function LeftColumn() {
         <h3 className="font-bold text-[var(--color-text-primary)] mb-3 text-lg">Shift Status</h3>
         <div className="flex items-center gap-3 bg-black/5 p-3 rounded-none border border-[var(--border-soft)]">
           <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center text-[var(--color-accent-blue)] font-bold border border-blue-500/20 shadow-sm">
-            JD
+            SV
           </div>
           <div>
-            <p className="text-sm font-bold text-[var(--color-text-primary)]">Officer John Doe</p>
+            <p className="text-sm font-bold text-[var(--color-text-primary)]">Officer Sadanand Viswanath</p>
             <p className="text-xs font-medium text-[var(--color-text-secondary)]">Duty Officer • Shift A</p>
           </div>
         </div>

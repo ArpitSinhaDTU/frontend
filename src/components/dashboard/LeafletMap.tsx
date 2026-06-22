@@ -49,18 +49,18 @@ interface LeafletMapProps {
 }
 
 export default function LeafletMap({ cameras, selectedCameraId, onCameraSelect, center, zoom }: LeafletMapProps) {
-  const [isMounted, setIsMounted] = useState(false);
+  const [mapKey, setMapKey] = useState("");
   
   useEffect(() => {
-    setIsMounted(true);
+    setMapKey(Date.now().toString());
   }, []);
 
-  if (!isMounted) return null;
+  if (!mapKey) return null;
 
   return (
     <div className="w-full h-full relative isolate rounded-xl overflow-hidden border border-white/10" style={{ filter: "invert(90%) hue-rotate(180deg) brightness(80%) contrast(120%)" }}>
       <MapContainer
-        key={`${center.lat}-${center.lng}`}
+        key={mapKey}
         center={[center.lat, center.lng]}
         zoom={zoom}
         style={{ width: "100%", height: "100%" }}

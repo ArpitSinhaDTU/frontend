@@ -14,7 +14,7 @@ export interface Violation {
   id: string;
   cameraId: number;
   type: "helmet" | "triple_riding" | "red_light" | "stop_line" | "wrong_side"
-      | "overspeed" | "illegal_parking" | "stampede_risk" | "accident";
+      | "overspeed" | "illegal_parking" | "stampede_risk" | "accident" | "seatbelt";
   timestamp: string;
   confidence: number;
   vehicleClass?: string;
@@ -51,6 +51,7 @@ export const mockCameras: Camera[] = [
   { id: 6, name: "Malleshwaram 8th Cross", location: "Bangalore", lat: 13.0231, lng: 77.5514, focus: "Crowd Counting / Stampede", status: "normal", liveFeedUrl: "/videos/sample6.mp4", uptimePercent: 99 },
   { id: 7, name: "Silk Board Junction", location: "Bangalore", lat: 12.8976, lng: 77.6334, focus: "Accident Detection", status: "alert", liveFeedUrl: "/videos/sample7.mp4", uptimePercent: 95 },
   { id: 8, name: "City Center Overview", location: "Bangalore", lat: 12.9416, lng: 77.5746, focus: "General Surveillance", status: "normal", liveFeedUrl: "/videoplayback_trimmed.webm", uptimePercent: 100 },
+  { id: 9, name: "Richmond Circle", location: "Bangalore", lat: 12.9500, lng: 77.6100, focus: "Seatbelt Violation", status: "alert", liveFeedUrl: "/videos/sample1.mp4", uptimePercent: 98 },
 ];
 
 export const mockDailySummary: DailySummary = {
@@ -114,6 +115,9 @@ export const mockViolations: Violation[] = [
   // Camera 7 — Accident Detection
   { id: "V7001", cameraId: 7, type: "accident", timestamp: "2026-06-21T09:05:00Z", confidence: 87, vehicleClass: "Car", numberPlate: "KA 05 MC 2345", severity: "severe", thumbnailUrl: "/images/placeholder-violation.jpg", reviewed: false },
   { id: "V7002", cameraId: 7, type: "accident", timestamp: "2026-06-21T11:22:00Z", confidence: 79, vehicleClass: "Bike", numberPlate: "KA 09 MB 6789", severity: "severe", thumbnailUrl: "/images/placeholder-violation.jpg", reviewed: false },
+
+  // Camera 9 — Seatbelt Violation
+  { id: "V9001", cameraId: 9, type: "seatbelt", timestamp: "2026-06-21T11:45:00Z", confidence: 95, vehicleClass: "Car", numberPlate: "KA 01 XY 1234", severity: "moderate", thumbnailUrl: "/images/placeholder-violation.jpg", reviewed: false },
 ];
 
 export const mockMapplsExtras = {
