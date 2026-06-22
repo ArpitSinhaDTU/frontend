@@ -74,7 +74,7 @@ function EvidenceTable({ violations, camera, onAction }: { violations: Violation
                       E-Challan
                     </Button>
                   )}
-                  {cameraId >= 2 && cameraId <= 7 && (
+                  {((cameraId >= 2 && cameraId <= 7) || cameraId === 9) && (
                     <PdfDownloadButton camera={camera} violation={v} />
                   )}
                 </div>
@@ -271,6 +271,20 @@ function Cam7_Accident() {
   );
 }
 
+function Cam9_Seatbelt() {
+  return (
+    <div className="relative w-full h-full bg-black flex items-center justify-center overflow-hidden">
+      <img src="/image.png" alt="Seatbelt Violation" className="w-full h-full object-contain" />
+      <div className="absolute top-3 left-3 bg-red-600/90 px-3 py-1.5 rounded-none shadow-lg">
+        <span className="text-white text-xs font-bold uppercase tracking-wider">Violation Evidence</span>
+      </div>
+      <div className="absolute bottom-3 inset-x-3 bg-red-600/90 border border-red-500 shadow-xl px-4 py-2 rounded-none text-center animate-pulse flex flex-col gap-1">
+        <span className="text-white text-sm font-bold uppercase tracking-wider">⚠ 1 Seatbelt Violation Found</span>
+      </div>
+    </div>
+  );
+}
+
 /* ══════════════════ Main Camera Page ══════════════════ */
 
 export default function CameraPage({ params }: { params: Promise<{ id: string }> }) {
@@ -295,6 +309,7 @@ export default function CameraPage({ params }: { params: Promise<{ id: string }>
       case 5: return <Cam5_IllegalParking />;
       case 6: return <Cam6_Stampede />;
       case 7: return <Cam7_Accident />;
+      case 9: return <Cam9_Seatbelt />;
       default:
         return (
           <div className="relative w-full h-full bg-gray-900 border border-gray-700 rounded-none overflow-hidden flex items-center justify-center">
@@ -385,6 +400,8 @@ export default function CameraPage({ params }: { params: Promise<{ id: string }>
                 <video className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted playsInline src="/cam7_enhanced.mp4" />
               ) : camera.id === 8 ? (
                 <video className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted playsInline src="/cam8_enhanced.mp4" />
+              ) : camera.id === 9 ? (
+                <img src="/image%20copy.png" className="absolute inset-0 w-full h-full object-contain bg-black" />
               ) : (
                 <div className="absolute inset-0 bg-slate-800 flex items-center justify-center">
                   <span className="text-slate-600 font-mono text-xs">VIDEO FEED {camera.name}</span>
