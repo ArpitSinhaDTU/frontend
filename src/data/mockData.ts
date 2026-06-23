@@ -45,10 +45,10 @@ export interface DailySummary {
 export const mockCameras: Camera[] = [
   { id: 1, name: "MG Road Junction", location: "Bangalore", lat: 12.9716, lng: 77.5946, focus: "Image Enhancement & Vehicle Detection", status: "normal", liveFeedUrl: "/videos/sample1.mp4", uptimePercent: 99 },
   { id: 2, name: "Indiranagar 100ft Rd", location: "Bangalore", lat: 12.9784, lng: 77.6608, focus: "Helmet & Triple Riding", status: "alert", liveFeedUrl: "/videos/sample2.mp4", uptimePercent: 98 },
-  { id: 3, name: "Koramangala Sony World", location: "Bangalore", lat: 12.9150, lng: 77.6345, focus: "Red Light Violation", status: "normal", liveFeedUrl: "/videos/sample3.mp4", uptimePercent: 100 },
+  { id: 3, name: "Koramangala Sony World", location: "Bangalore", lat: 12.9150, lng: 77.6345, focus: "Red Light Violation", status: "alert", liveFeedUrl: "/videos/sample3.mp4", uptimePercent: 100 },
   { id: 4, name: "Hebbal Flyover", location: "Bangalore", lat: 13.0654, lng: 77.5971, focus: "Wrong Side Driving & Speed Limit", status: "alert", liveFeedUrl: "/videos/sample4.mp4", uptimePercent: 97 },
-  { id: 5, name: "Jayanagar 4th Block", location: "Bangalore", lat: 12.9099, lng: 77.5734, focus: "Illegal Parking", status: "normal", liveFeedUrl: "/videos/sample5.mp4", uptimePercent: 99 },
-  { id: 6, name: "Malleshwaram 8th Cross", location: "Bangalore", lat: 13.0231, lng: 77.5514, focus: "Crowd Counting / Stampede", status: "normal", liveFeedUrl: "/videos/sample6.mp4", uptimePercent: 99 },
+  { id: 5, name: "Jayanagar 4th Block", location: "Bangalore", lat: 12.9099, lng: 77.5734, focus: "Illegal Parking", status: "alert", liveFeedUrl: "/videos/sample5.mp4", uptimePercent: 99 },
+  { id: 6, name: "Malleshwaram 8th Cross", location: "Bangalore", lat: 13.0231, lng: 77.5514, focus: "Crowd Counting / Stampede", status: "alert", liveFeedUrl: "/videos/sample6.mp4", uptimePercent: 99 },
   { id: 7, name: "Silk Board Junction", location: "Bangalore", lat: 12.8976, lng: 77.6334, focus: "Accident Detection", status: "alert", liveFeedUrl: "/videos/sample7.mp4", uptimePercent: 95 },
   { id: 8, name: "City Center Overview", location: "Bangalore", lat: 12.9416, lng: 77.5746, focus: "General Surveillance", status: "normal", liveFeedUrl: "/videoplayback_trimmed.webm", uptimePercent: 100 },
   { id: 9, name: "Richmond Circle", location: "Bangalore", lat: 12.9500, lng: 77.6100, focus: "Seatbelt Violation", status: "alert", liveFeedUrl: "/videos/sample1.mp4", uptimePercent: 98 },

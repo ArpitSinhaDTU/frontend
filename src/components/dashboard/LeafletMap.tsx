@@ -53,6 +53,7 @@ export default function LeafletMap({ cameras, selectedCameraId, onCameraSelect, 
   
   useEffect(() => {
     setMapKey(Date.now().toString());
+    return () => setMapKey("");
   }, []);
 
   if (!mapKey) return null;
