@@ -21,6 +21,19 @@ function Toast({ message, onDone }: { message: string; onDone: () => void }) {
 }
 
 /* ──────────────── Evidence Table per camera type ──────────────── */
+function getEvidenceImageForCamera(cameraId: number): string | null {
+  switch (cameraId) {
+    case 2: return "/cam2_violation.png";
+    case 3: return "/cam3_violation.jpeg";
+    case 4: return "/cam4_violation.png";
+    case 5: return "/cam5_violation.png";
+    case 6: return "/cam6_annotated.png";
+    case 7: return "/cam7_violation.png";
+    case 9: return "/image.png";
+    default: return null;
+  }
+}
+
 function EvidenceTable({ violations, camera, onAction }: { violations: Violation[]; camera: CameraType; onAction: (msg: string) => void }) {
   const cameraId = camera.id;
   // Determine extra columns per camera type
@@ -46,7 +59,11 @@ function EvidenceTable({ violations, camera, onAction }: { violations: Violation
               <td className="px-4 py-3 text-gray-500 font-mono text-xs">{new Date(v.timestamp).toLocaleTimeString()}</td>
               <td className="px-4 py-3">
                 <div className="w-10 h-10 bg-gray-200 rounded overflow-hidden flex items-center justify-center">
-                  <Camera size={16} className="text-gray-400" />
+                  {getEvidenceImageForCamera(cameraId) ? (
+                    <img src={getEvidenceImageForCamera(cameraId)!} alt="Evidence" className="w-full h-full object-cover" />
+                  ) : (
+                    <Camera size={16} className="text-gray-400" />
+                  )}
                 </div>
               </td>
               <td className="px-4 py-3">
@@ -209,7 +226,7 @@ function Cam6_Stampede() {
             mode === "enhanced_video" ? "bg-green-500 text-white" : "text-white/60 hover:text-white"
           }`}
         >
-          Enhanced Video
+          Ai Processed Video
         </button>
         <button
           onClick={() => setMode("enhanced_image")}
@@ -217,7 +234,7 @@ function Cam6_Stampede() {
             mode === "enhanced_image" ? "bg-green-500 text-white" : "text-white/60 hover:text-white"
           }`}
         >
-          Enhanced Image
+          Ai Processed Image
         </button>
       </div>
       
@@ -229,7 +246,7 @@ function Cam6_Stampede() {
           <video className="w-full h-full object-contain" autoPlay loop muted playsInline src="/cam6_enhanced.mp4" />
         )}
         {mode === "enhanced_image" && (
-          <img src="/cam6_annotated.png" alt="Enhanced Image" className="w-full h-full object-contain" />
+          <img src="/cam6_annotated.png" alt="Ai Processed Image" className="w-full h-full object-contain" />
         )}
       </div>
     </div>
