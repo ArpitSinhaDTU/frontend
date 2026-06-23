@@ -39,6 +39,12 @@ export function CameraPopupCard({ camera, onClose }: { camera: Camera, onClose: 
           <p className="text-xs font-semibold text-white leading-tight">{camera.focus}</p>
         </div>
 
+        {(camera.id === 6 || camera.id === 7) && (
+          <div className="bg-red-600/90 border border-red-500 rounded p-2 text-white text-[10px] leading-tight mt-2 font-bold">
+            📍 Alert: Location sent to nearest Police Station, Fire Station & Hospital using MapMyIndia Nearby Places & Reverse Geocode API
+          </div>
+        )}
+
         <div>
           <div className="flex justify-between items-center mb-1">
             <h4 className="text-[10px] font-bold text-white/70 uppercase tracking-wider">Detections (last hr)</h4>

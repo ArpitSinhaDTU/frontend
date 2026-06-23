@@ -56,7 +56,7 @@ function EvidenceTable({ violations, camera, onAction }: { violations: Violation
         <tbody className="divide-y divide-(--color-border-soft)">
           {violations.map((v) => (
             <tr key={v.id} className="hover:bg-gray-50/50">
-              <td className="px-4 py-3 text-gray-500 font-mono text-xs">{new Date(v.timestamp).toLocaleTimeString()}</td>
+              <td suppressHydrationWarning className="px-4 py-3 text-gray-500 font-mono text-xs">{new Date(v.timestamp).toLocaleTimeString()}</td>
               <td className="px-4 py-3">
                 <div className="w-10 h-10 bg-gray-200 rounded overflow-hidden flex items-center justify-center">
                   {getEvidenceImageForCamera(cameraId) ? (
@@ -280,9 +280,6 @@ function Cam7_Accident() {
             </div>
           ))}
         </div>
-        <div className="mt-1.5 bg-amber-900/30 border border-amber-600/50 rounded px-2 py-1 text-amber-300 text-[10px]">
-          📍 Alert dispatched: Nearest hospital & PCR van notified at 09:05:05 (simulated)
-        </div>
       </div>
     </div>
   );
@@ -391,6 +388,12 @@ export default function CameraPage({ params }: { params: Promise<{ id: string }>
       </div>
 
       <div className="flex-1 flex flex-col gap-6 min-h-0">
+        {/* Alert Banner for MapMyIndia */}
+        {(cameraId === 6 || cameraId === 7) && (
+          <div className="bg-red-600/90 border border-red-500 rounded-none px-4 py-2 text-white text-sm flex items-center justify-center shrink-0 shadow-md font-bold uppercase tracking-wider">
+            📍 Alert: Location sent to nearest Police Station, Fire Station & Hospital using MapMyIndia Nearby Places & Reverse Geocode API
+          </div>
+        )}
         {/* Top Split: Video Panes */}
         <div className="flex-1 flex flex-col md:flex-row gap-6 min-h-0">
           {/* Left Pane: Raw Feed */}
@@ -426,7 +429,7 @@ export default function CameraPage({ params }: { params: Promise<{ id: string }>
               )}
               {/* Scanline overlay */}
               <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.03)_2px,rgba(0,0,0,0.03)_4px)] pointer-events-none" />
-              <div className="absolute bottom-2 left-2 text-white/70 font-mono text-xs">
+              <div suppressHydrationWarning className="absolute bottom-2 left-2 text-white/70 font-mono text-xs">
                 {new Date().toISOString().replace("T", " ").substring(0, 19)}
               </div>
               <div className="absolute bottom-2 right-2 text-white/70 font-mono text-xs">
