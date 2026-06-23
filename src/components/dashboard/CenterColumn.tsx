@@ -57,10 +57,10 @@ export function CenterColumn() {
         ) : (
           <div className="w-full h-full p-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 overflow-y-auto content-start">
             {mockCameras.map(cam => (
-              <div
+              <Link
+                href={`/camera/${cam.id}`}
                 key={cam.id}
-                className="glass-panel hover:bg-white/10 transition-colors p-4 cursor-pointer flex flex-col h-fit"
-                onClick={() => setSelectedCamera(cam)}
+                className="glass-panel hover:bg-white/10 transition-colors p-4 cursor-pointer flex flex-col h-fit block"
               >
                 <div className="flex justify-between items-start mb-2">
                   <div className={`w-2 h-2 rounded-full ${cam.status === "alert" ? "bg-[var(--color-accent-red)] animate-pulse" : "bg-[var(--color-accent-green)]"}`} />
@@ -68,7 +68,7 @@ export function CenterColumn() {
                 </div>
                 <h4 className="font-bold text-sm mb-1 truncate text-[var(--color-text-primary)]">{cam.name}</h4>
                 <p className="text-xs text-[var(--color-text-secondary)] line-clamp-2">{cam.focus}</p>
-              </div>
+              </Link>
             ))}
           </div>
         )}
