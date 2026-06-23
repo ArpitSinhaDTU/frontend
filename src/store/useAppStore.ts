@@ -16,7 +16,7 @@ export const useAppStore = create<AppState>()(
   persist(
     (set) => ({
       isAuthenticated: false,
-      login: () => set({ isAuthenticated: true }),
+      login: () => set({ isAuthenticated: true, viewMode: "map" }),
       logout: () => set({ isAuthenticated: false }),
       isLive: true,
       toggleLive: () => set((state) => ({ isLive: !state.isLive })),
