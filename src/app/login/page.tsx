@@ -28,7 +28,7 @@ export default function LoginPage() {
         playsInline 
         className="absolute inset-0 w-full h-full object-cover z-0 opacity-100"
       >
-        <source src="/untitled_design_720p.mp4" type="video/mp4" />
+        <source src="/untitled_design_480p.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-black/30 z-0 backdrop-blur-[2px]"></div>
       
